@@ -1,0 +1,8 @@
+//
+// Created by Пользователь on 03.09.2026.
+//
+
+#ifndef LIBRARY_MANAGER_INTERFACE_H
+#define LIBRARY_MANAGER_INTERFACE_H
+
+#endif //LIBRARY_MANAGER_INTERFACE_H
