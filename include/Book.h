@@ -39,5 +39,5 @@ private:
     std::string author;
     std::string isbn;
     std::string genre;
-    bool is_borrowed;
+    bool is_borrowed = false;
 };
