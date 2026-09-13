@@ -2,9 +2,16 @@
 
 #define LIBRARY_MANAGER_USER_H
 
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
+
+enum class UserType {
+    STUDENT,
+    FACULTY,
+    GUEST
+};
 
 class User {
 public:
@@ -16,6 +23,7 @@ public:
     virtual int getMaxBooks() = 0;
     virtual int getBorrowDays() = 0;
     virtual double getFinePerDay() = 0;
+    virtual UserType getType() = 0;
 
     virtual ~User();
 
@@ -38,6 +46,18 @@ public:
     const std::vector<std::string>& getBorrowedBooks() const {
         return borrowedBooks;
     }
+
+    void addBorrowedBook (const std::string& isbn) {
+        borrowedBooks.push_back(isbn);
+    }
+
+    void RemoveBorrowedBook (const std::string& isbn) {
+        std::erase(borrowedBooks, isbn);
+    }
+
+    std::unique_ptr<User> createUser(UserType type, std::string name,
+        std::string userId, std::string email);
+
 
 protected:
     std::string name;
@@ -62,6 +82,10 @@ public:
     double getFinePerDay() override {
         return 0.50;
     }
+
+    UserType getType() override {
+        return UserType::STUDENT;
+    }
 };
 
 class Faculty final : public User {
@@ -80,6 +104,10 @@ public:
     double getFinePerDay() override {
         return 0.50;
     }
+
+    UserType getType() override {
+        return UserType::FACULTY;
+    }
 };
 
 class Guest final : public User {
@@ -97,5 +125,9 @@ public:
 
     double getFinePerDay() override {
         return 0.50;
+    }
+
+    UserType getType() override {
+        return UserType::GUEST;
     }
 };
