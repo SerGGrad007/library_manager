@@ -3,7 +3,6 @@
 #define LIBRARY_MANAGER_USER_H
 
 #include <string>
-// #include <utility>
 #include <utility>
 #include <vector>
 
@@ -22,6 +21,22 @@ public:
 
     bool canBorrow() {
         return borrowedBooks.size() < static_cast<size_t>(getMaxBooks());
+    }
+
+    const std::string& getUserId() const {
+        return userId;
+    }
+
+    const std::string& getName() const {
+        return name;
+    }
+
+    const std::string& getEmail() const {
+        return email;
+    }
+
+    const std::vector<std::string>& getBorrowedBooks() const {
+        return borrowedBooks;
     }
 
 protected:
