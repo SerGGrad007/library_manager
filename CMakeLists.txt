@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(library_core
         src/User.cpp
+        src/Book.cpp
 )
 
 target_include_directories(library_core PUBLIC include)
