@@ -1,7 +1,5 @@
 #pragma once
 
-#define LIBRARY_MANAGER_USER_H
-
 #include <memory>
 #include <string>
 #include <utility>
@@ -16,16 +14,14 @@ enum class UserType {
 class User {
 public:
     User(std::string name, std::string userId, std::string email):
-    name(std::move(name)), userId(std::move(userId)), email(std::move(email)){
-        this->borrowedBooks = std::vector<std::string>();
-    }
+    name(std::move(name)), userId(std::move(userId)), email(std::move(email)){}
 
     virtual int getMaxBooks() = 0;
     virtual int getBorrowDays() = 0;
     virtual double getFinePerDay() = 0;
     virtual UserType getType() = 0;
 
-    virtual ~User();
+    virtual ~User() = default;
 
     bool canBorrow() {
         return borrowedBooks.size() < static_cast<size_t>(getMaxBooks());
@@ -51,12 +47,12 @@ public:
         borrowedBooks.push_back(isbn);
     }
 
-    void RemoveBorrowedBook (const std::string& isbn) {
+    void removeBorrowedBook (const std::string& isbn) {
         std::erase(borrowedBooks, isbn);
     }
 
-    std::unique_ptr<User> createUser(UserType type, std::string name,
-        std::string userId, std::string email);
+    static std::unique_ptr<User> createUser(UserType type, const std::string& name,
+        const std::string& userId, const std::string& email);
 
 
 protected:
