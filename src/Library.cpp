@@ -24,11 +24,12 @@ Book * Library::findBook(const std::string &isbn) {
 std::vector<Book> Library::searchBooks(const std::string &query) {
     const auto q =toLower(query);
     std::vector<Book> result;
-    for (const auto &val: books | std::views::values) {
-        if (q == toLower(val.getAuthor()) ||
-            q == toLower(val.getGenre()) ||
-            q == toLower(val.getTitle()) ||
-            q == toLower(val.getIsbn()) ){
+    for (const auto &val : books | std::views::values) {
+        if (toLower(val.getAuthor()).find(q) != std::string::npos ||
+            toLower(val.getGenre()).find(q) != std::string::npos ||
+            toLower(val.getTitle()).find(q) != std::string::npos ||
+            toLower(val.getIsbn()).find(q) != std::string::npos)
+        {
             result.push_back(val);
         }
     }
@@ -72,7 +73,7 @@ bool Library::borrowBook(const std::string &userId, const std::string &isbn) {
 
 bool Library::returnBook(const std::string &userId, const std::string &isbn) {
     auto book = findBook(isbn);
-    auto user = findUser(isbn);
+    auto user = findUser(userId);
     if (book == nullptr || !book->isBorrowed()) return false;
     if (user == nullptr) return false;
 
