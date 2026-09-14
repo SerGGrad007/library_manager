@@ -2,6 +2,13 @@
 
 #include <ranges>
 
+std::string Library::toLower(const std::string& s) {
+    std::string result = s;
+    std::transform(result.begin(), result.end(), result.begin(),
+                    [](unsigned char c) { return std::tolower(c); });
+    return result;
+}
+
 void Library::addBook(const std::string &title, const std::string &author, const std::string &isbn,
                       const std::string &genre) {
     const Book book (title, author, isbn, genre);
@@ -22,7 +29,7 @@ Book * Library::findBook(const std::string &isbn) {
 }
 
 std::vector<Book> Library::searchBooks(const std::string &query) {
-    const auto q =toLower(query);
+    const auto q = toLower(query);
     std::vector<Book> result;
     for (const auto &val : books | std::views::values) {
         if (toLower(val.getAuthor()).find(q) != std::string::npos ||
