@@ -9,9 +9,7 @@ public:
     Record(std::string userId, std::string isbn,
         const TimePoint borrowDate, const TimePoint expireDate,
         const double finePerDay = 0.0): userId(std::move(userId)),
-    isbn(std::move(isbn)), borrowDate(borrowDate), expireDate(expireDate),
-    finePerDay(finePerDay)
-    {}
+    isbn(std::move(isbn)), borrowDate(borrowDate), expireDate(expireDate){}
 
     const std::string& getUserId() const {
         return userId;
@@ -42,6 +40,17 @@ public:
         returnDate = when;
     }
 
+    bool isExpired() const {
+        return std::chrono::system_clock::now() > expireDate;
+    }
+
+    int countDaysExpired() const {
+        const TimePoint reference = returned ? returnDate : std::chrono::system_clock::now();
+        if (reference <= expireDate) return 0;
+        const auto t_diff = std::chrono::duration_cast<std::chrono::hours>(reference - expireDate);
+        return static_cast<int> (t_diff.count() / 24) + 1;
+    }
+
 private:
     std::string userId;
     std::string isbn;
@@ -49,5 +58,4 @@ private:
     TimePoint expireDate;
     TimePoint returnDate;
     bool returned = false;
-    double finePerDay;
 };
