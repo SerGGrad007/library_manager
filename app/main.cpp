@@ -1,6 +1,7 @@
-#include <iostream>
+#include "LibraryConsole.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    LibraryConsole console;
+    console.run();
     return 0;
 }
