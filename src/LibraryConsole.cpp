@@ -2,8 +2,6 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
-#include <sstream>
 #include <chrono>
 #include <ctime>
 
@@ -368,7 +366,6 @@ int LibraryConsole::getIntInput(const std::string& prompt)
 
             const int value = std::stoi(input, &pos);
 
-            // Запрещаем ввод вроде "123abc".
             if (pos != input.size())
             {
                 throw std::invalid_argument("extra characters");

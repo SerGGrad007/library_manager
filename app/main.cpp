@@ -1,4 +1,4 @@
-#include "LibraryConsole.h"
+#include <LibraryConsole.h>
 
 int main() {
     LibraryConsole console;
