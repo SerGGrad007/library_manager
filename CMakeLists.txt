@@ -8,6 +8,9 @@ add_library(library_core
         src/Book.cpp
         include/Record.h
         include/User.h
+        include/LibraryOperations.h
+        include/Library.h
+        src/Library.cpp
 )
 
 target_include_directories(library_core PUBLIC include)

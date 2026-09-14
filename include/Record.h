@@ -7,8 +7,7 @@ public:
     using TimePoint = std::chrono::system_clock::time_point;
 
     Record(std::string userId, std::string isbn,
-        const TimePoint borrowDate, const TimePoint expireDate,
-        const double finePerDay = 0.0): userId(std::move(userId)),
+        const TimePoint borrowDate, const TimePoint expireDate): userId(std::move(userId)),
     isbn(std::move(isbn)), borrowDate(borrowDate), expireDate(expireDate){}
 
     const std::string& getUserId() const {
