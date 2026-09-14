@@ -1,19 +1,19 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.16)
 project(library_manager)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(library_core
-        include/Book.h
-        include/Record.h
-        include/User.h
-        include/LibraryOperations.h
-        include/Library.h
         src/Library.cpp
         src/LibraryConsole.cpp
-        app/main.cpp
+        src/User.cpp
+        src/Book.cpp
 
 )
 
+add_executable(library_app app/main.cpp)
+
 target_include_directories(library_core PUBLIC include)
+
+target_link_libraries(library_app PRIVATE library_core)
