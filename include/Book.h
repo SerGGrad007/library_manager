@@ -26,8 +26,8 @@ public:
         return isbn;
     }
 
-    const std::string& isBorrowed() const {
-        return isbn;
+    bool isBorrowed() const {
+        return is_borrowed;
     }
 
     void setBorrowed(const bool value) {
