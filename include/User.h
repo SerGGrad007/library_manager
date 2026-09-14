@@ -18,7 +18,6 @@ public:
 
     virtual int getMaxBooks() = 0;
     virtual int getBorrowDays() = 0;
-    virtual double getFinePerDay() = 0;
     virtual UserType getType() = 0;
 
     virtual ~User() = default;
@@ -75,10 +74,6 @@ public:
         return 14;
     }
 
-    double getFinePerDay() override {
-        return 0.50;
-    }
-
     UserType getType() override {
         return UserType::STUDENT;
     }
@@ -97,10 +92,6 @@ public:
         return 30;
     }
 
-    double getFinePerDay() override {
-        return 0.50;
-    }
-
     UserType getType() override {
         return UserType::FACULTY;
     }
@@ -117,10 +108,6 @@ public:
 
     int getBorrowDays() override {
         return 7;
-    }
-
-    double getFinePerDay() override {
-        return 0.50;
     }
 
     UserType getType() override {
